@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+    db:
+        container_name: 'mysql'
+        restart: always
+        image: mariadb
+        ports:
+            - '${DB_PORT}:${DB_PORT}'
+        volumes:
+            - ./_database/data:/var/lib/mysql
+        environment:
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+
+    smtp:
+        container_name: 'smtp'
+        restart: always
+        image: jcalonso/mailhog
+        ports:
+            - '${MAIL_PORT}:${MAIL_PORT}'
+            - '8025:8025'
+
+volumes:
+    mysql:
+        driver: local
