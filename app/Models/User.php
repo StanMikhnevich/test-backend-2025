@@ -13,11 +13,8 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
+    const IMAGE_PATH = 'images/users';
+
     protected $fillable = [
         'position_id',
         'name',
@@ -42,4 +39,13 @@ class User extends Authenticatable
         return $this->belongsTo(Position::class);
     }
 
+    public function getPhoneDisplayAttribute(): string
+    {
+        return formatPhone($this->phone);
+    }
+
+    public function getPhotoPathAttribute(): string
+    {
+        return self::IMAGE_PATH . '/' . $this->photo;
+    }
 }
