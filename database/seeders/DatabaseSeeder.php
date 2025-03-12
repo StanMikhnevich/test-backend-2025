@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
          $this->call([
              PositionsSeeder::class,
+             UsersSeeder::class,
          ]);
     }
 }
