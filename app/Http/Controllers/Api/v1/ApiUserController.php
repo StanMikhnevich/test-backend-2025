@@ -32,7 +32,7 @@ class ApiUserController extends Controller implements HasMiddleware
         return $this->success([
             'users' => UserResource::collection(
                 User::query()->latest()->paginate(
-                    $filters['count'] ?? config('app.pagination.perPage')
+                    $filters['count'] ?? config('users.pagination.perPage')
                 )
             )],
         );

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Jobs\OptimizeUserPhoto;
 use App\Models\RegisterToken;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,6 +19,8 @@ class UserObserver
     public function created(User $user): void
     {
         RegisterToken::where('token', $this->token)->valid()->delete();
+
+        OptimizeUserPhoto::dispatch($user);
     }
 
 }
