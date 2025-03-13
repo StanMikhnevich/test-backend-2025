@@ -15,8 +15,8 @@ class UserFactory extends Factory
 
     private function makeAvatarUrl(?string $name): string
     {
-        return URL::query(config('users.photo.url'), [
-            'size' => config('users.photo.size'),
+        return URL::query(config('users.fakePhotoUrl'), [
+            'size' => config('users.photoOptions.width'),
             'name' => $name,
         ]);
     }

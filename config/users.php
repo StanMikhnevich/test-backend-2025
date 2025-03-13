@@ -5,9 +5,12 @@ return [
         'perPage' => 6,
     ],
 
-    'photo' => [
-        'url' => 'https://ui-avatars.com/api',
-        'size' => 70,
+    'fakePhotoUrl' => 'https://ui-avatars.com/api',
+
+    'photoOptions' => [
+        'method' => 'cover',
+        'width' => 70,
+        'height' => 70,
     ],
 
     'positionsUrl' => 'https://frontend-test-assignment-api.abz.agency/api/v1/positions',
