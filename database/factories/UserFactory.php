@@ -13,14 +13,6 @@ class UserFactory extends Factory
 {
     protected static ?string $password;
 
-    private function makeAvatarUrl(?string $name): string
-    {
-        return URL::query(config('users.fakePhotoUrl'), [
-            'size' => config('users.photoOptions.width'),
-            'name' => $name,
-        ]);
-    }
-
     public function definition(): array
     {
         $name = fake()->name();
@@ -29,7 +21,7 @@ class UserFactory extends Factory
             'name' => $name,
             'email' => fake()->unique()->safeEmail(),
             'phone' => '380' . fake()->unique()->numerify('#########'),
-            'photo' => $this->makeAvatarUrl($name),
+            'photo' => null,
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
         ];
