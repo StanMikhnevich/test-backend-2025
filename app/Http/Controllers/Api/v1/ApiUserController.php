@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Middleware\CheckRegisterToken;
 use App\Http\Requests\User\IndexUserRequest;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Traits\HasApiResponse;
@@ -29,12 +30,14 @@ class ApiUserController extends Controller implements HasMiddleware
     {
         $filters = $request->validated();
 
-        return $this->success([
-            'users' => UserResource::collection(
-                User::query()->latest()->paginate(
+        return $this->success(
+            (new UserCollection(
+                User::query()->latest()->when(empty($filters['count']), function ($query, $count) {
+                    $query->take($count ?? config('users.pagination.perPage'));
+                })->paginate(
                     $filters['count'] ?? config('users.pagination.perPage')
                 )
-            )],
+            ))->resolve()
         );
     }
 
