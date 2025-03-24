@@ -2,15 +2,10 @@
 
 namespace App\Http\Requests\User;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseFormRequest;
 
-class StoreUserRequest extends FormRequest
+class StoreUserRequest extends BaseFormRequest
 {
-    public function authorize(): bool
-    {
-        return true;
-    }
-
     public function rules(): array
     {
         return [
@@ -49,7 +44,7 @@ class StoreUserRequest extends FormRequest
             'photo' => [
                 'required',
                 'file',
-                'mimes:jpeg,jpg,png',
+                'mimes:jpeg,jpg',
                 'max:5000',
                 'dimensions:min_width=' . config('users.photo.size') . ',min_height=' . config('users.photo.size'),
             ],
