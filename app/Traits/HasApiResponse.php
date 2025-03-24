@@ -13,4 +13,13 @@ trait HasApiResponse
             $data
         ), $status);
     }
+
+    protected function error(string $message, array $errors = [], int $status = 400): JsonResponse
+    {
+        return response()->json([
+            'success' => false,
+            'message' => $message,
+            'errors' => $errors
+        ], $status);
+    }
 }
