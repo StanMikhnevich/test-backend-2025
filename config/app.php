@@ -1,5 +1,7 @@
 <?php
 
+use App\Exceptions\Api\UserNotFoundException;
+
 return [
 
     /*
@@ -122,5 +124,9 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    'exceptions' => [
+        App\Models\User::class => UserNotFoundException::class,
+    ]
 
 ];
