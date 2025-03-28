@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'tinify' => [
+        'endpoint' => env('TINIFY_API_ENDPOINT'),
+        'key' => env('TINIFY_API_KEY'),
+    ],
+
 ];
