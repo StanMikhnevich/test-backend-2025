@@ -8,15 +8,15 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserNotFoundException extends Exception
+class UserExistsException extends Exception
 {
     use HasApiResponse;
 
     public function render(Request $request): JsonResponse
     {
         return $this->error(
-            'User not found',
-            status: Response::HTTP_NOT_FOUND
+            'User with this phone or email already exist',
+            status: Response::HTTP_CONFLICT
         );
     }
 }

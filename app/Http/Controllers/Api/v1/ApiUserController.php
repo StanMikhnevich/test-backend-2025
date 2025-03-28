@@ -53,6 +53,7 @@ class ApiUserController extends Controller implements HasMiddleware
         }
 
         return $this->success([
+            'message' => 'New user successfully registered',
             'user_id' => User::create($data)->id
         ]);
     }

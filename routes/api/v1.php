@@ -10,7 +10,7 @@ Route::get('token', ApiTokenController::class);
 Route::apiResource(
     'positions',
     ApiPositionController::class
-)->only('index', 'show');
+)->only('index');
 
 Route::apiResource(
     'users',

@@ -6,6 +6,7 @@ use App\Traits\HasApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\Response;
 
 class BaseFormRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class BaseFormRequest extends FormRequest
                 $this->error(
                     'Validation failed',
                     $validator->errors()->getMessages(),
-                    422
+                    Response::HTTP_UNPROCESSABLE_ENTITY
                 )
             );
         }
