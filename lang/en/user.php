@@ -2,7 +2,7 @@
 
 return [
     'validation' => [
-        'exist' => 'User with this phone or email already exist',
+        'exists' => 'User with this phone or email already exist',
     ],
 
     'registered' => 'New user successfully registered',
