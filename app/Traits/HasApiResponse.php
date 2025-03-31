@@ -19,7 +19,7 @@ trait HasApiResponse
         return response()->json([
             'success' => false,
             'message' => $message,
-            'errors' => $errors
+            'fails' => $errors
         ], $status);
     }
 }
