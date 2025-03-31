@@ -22,7 +22,7 @@ class BaseFormRequest extends FormRequest
         if ($this->expectsJson()) {
             throw new HttpResponseException(
                 $this->error(
-                    'Validation failed',
+                    __('validation.failed'),
                     $validator->errors()->getMessages(),
                     Response::HTTP_UNPROCESSABLE_ENTITY
                 )

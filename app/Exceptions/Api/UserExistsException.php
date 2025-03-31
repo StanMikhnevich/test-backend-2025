@@ -15,7 +15,7 @@ class UserExistsException extends Exception
     public function render(Request $request): JsonResponse
     {
         return $this->error(
-            'User with this phone or email already exist',
+            __('user.validation.exists'),
             status: Response::HTTP_CONFLICT
         );
     }

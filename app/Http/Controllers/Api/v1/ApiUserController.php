@@ -32,9 +32,7 @@ class ApiUserController extends Controller implements HasMiddleware
 
         return $this->success(
             (new UserCollection(
-                User::query()->latest()->when(empty($filters['count']), function ($query, $count) {
-                    $query->take($count ?? config('users.pagination.perPage'));
-                })->paginate(
+                User::with('position')->latest()->paginate(
                     $filters['count'] ?? config('users.pagination.perPage')
                 )
             ))->resolve()
@@ -53,7 +51,7 @@ class ApiUserController extends Controller implements HasMiddleware
         }
 
         return $this->success([
-            'message' => 'New user successfully registered',
+            'message' => __('user.registered'),
             'user_id' => User::create($data)->id
         ]);
     }
