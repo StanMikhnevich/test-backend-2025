@@ -20,7 +20,7 @@ class CheckRegisterToken
             $token->delete();
 
             return $this->error(
-                'The token expired',
+                __('user.tokenExpired'),
                 [],
                 Response::HTTP_UNAUTHORIZED
             );

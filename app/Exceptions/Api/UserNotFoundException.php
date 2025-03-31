@@ -15,7 +15,7 @@ class UserNotFoundException extends Exception
     public function render(Request $request): JsonResponse
     {
         return $this->error(
-            'User not found',
+            __('users.notFound'),
             status: Response::HTTP_NOT_FOUND
         );
     }
